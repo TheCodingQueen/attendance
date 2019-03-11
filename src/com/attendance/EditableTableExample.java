@@ -1,11 +1,12 @@
 package com.attendance;
 import com.attendance.misc.dbConnect;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,13 +15,8 @@ public class EditableTableExample extends JFrame
 {
     public EditableTableExample()
     {
-        //build the list
-//        List<Attendance> AttendanceList = new ArrayList<Attendance>();
-/*        Attendance row1 = new Attendance(1, 1, "John", true, false);
-          Attendance row2 = new Attendance(2, 1, "Rambo", true, false);
-          Attendance row3 = new Attendance(3, 1, "Zorro", true, true);
-*/
-//        public static ArrayList<Attendance> getAssignedUserPrivileges(User u) throws Exception {
+
+
         ArrayList<Attendance> al = new ArrayList<>();
         String query = "select a.idstudent,a.classid,b.Name,a.Att1,a.Att2 from attendance.Attendance a, attendance.Student b where a.idstudent = b.idstudent;";
 
@@ -29,42 +25,64 @@ public class EditableTableExample extends JFrame
 
     try {
         PreparedStatement ps = con.prepareStatement(query);
-//        ps.setInt(1, u.getUserId());
+
         ResultSet rs = ps.executeQuery();
-        while (rs.next()) {
+        while (rs.next())
+        {
             Attendance at = new Attendance();
             at.setIdStudent(rs.getInt("idstudent"));
             at.setClassId(rs.getInt("classid"));
             at.setName(rs.getString("Name"));
-//            at.setAtt1(rs.Boolean("Att1"));
-//            at.setAtt2(rs.getString("Att2"));
+
             al.add(at);
 
         }
-    } catch (Exception  e) {
-        e.printStackTrace();
+        } catch (Exception  e) {  e.printStackTrace();  }
 
-    }
+    AttendanceTableModel model1 = new AttendanceTableModel(al);
 
-//        return al;
+        JFrame f1= new JFrame();
+        f1.setVisible(true);
+        f1.setLayout(null);
+        f1.setSize(800,800);
 
-        
-        //create the model
-        AttendanceTableModel model = new AttendanceTableModel(al);
-        //create the table
-        JTable table = new JTable(model);
-//        AttendanceList.add(row1);
-//        AttendanceList.add(row2);
-//        AttendanceList.add(row3);
+        JTable table = new JTable(model1);
 
-        //add the table to the frame
 
-        this.add(new JScrollPane(table));
-        
-        this.setTitle("Editable Table Example");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
-        this.pack();
-        this.setVisible(true);
+        JButton b= new JButton();
+        b.setBounds(10,230,300,100);
+
+        b.addActionListener(new ActionListener()
+        {
+            public void actionPerformed( ActionEvent e)
+
+            {
+                int totrec = al.size();
+
+                for(int i =0;i<totrec; i++) {
+                    System.out.println(model1.getValueAt(i,3) );
+                }
+
+            }
+
+        });
+        table.setBounds(10, 10 , 800 , 800);
+
+
+        f1.add(b);
+        f1.add(table);
+        b.setVisible(true);
+        table.setVisible(true);
+    /*&
+        add a button
+
+        add event listener for button press
+        when pressed:
+            iterate through table
+            read att1 + 2
+            update array list (al)
+
+         */
     }
     
     public static void main(String[] args)
