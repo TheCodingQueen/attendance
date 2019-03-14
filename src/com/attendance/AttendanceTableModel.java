@@ -10,11 +10,11 @@ public class AttendanceTableModel extends AbstractTableModel
     
     private final String[] columnNames = new String[]
             {
-            "StudentId", "Name", "ClassId", "Att1", "Att2"
+            "StudentId", "Name", "ClassId","Att1", "Att2"
     };
     private final Class[] columnClass = new Class[]
             {
-        Integer.class, String.class, Integer.class, Boolean.class,Boolean.class
+        Integer.class, String.class, Integer.class,Boolean.class,Boolean.class
     };
 
     public AttendanceTableModel(List<Attendance> pAttendanceList)
