@@ -2,6 +2,7 @@ package com.attendance;
 
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
+import java.util.Date;
 import com.attendance.Attendance;
 
 public class AttendanceTableModel extends AbstractTableModel
@@ -10,11 +11,11 @@ public class AttendanceTableModel extends AbstractTableModel
     
     private final String[] columnNames = new String[]
             {
-            "StudentId", "Name", "ClassId","Att1", "Att2"
+            "StudentId", "ClassId", "Name","AttDate","Att1", "Att2"
     };
     private final Class[] columnClass = new Class[]
             {
-        Integer.class, String.class, Integer.class,Boolean.class,Boolean.class
+        Integer.class, Integer.class,String.class, Date.class,Boolean.class,Boolean.class
     };
 
     public AttendanceTableModel(List<Attendance> pAttendanceList)
@@ -56,17 +57,21 @@ public class AttendanceTableModel extends AbstractTableModel
         }
         else if(1 == columnIndex)
         {
-            return row.getName();
+            return row.getClassId();
         }
         else if(2 == columnIndex)
         {
-            return row.getClassId();
+            return row.getName();
         }
         else if(3 == columnIndex)
         {
+            return row.getAttDate();
+        }
+        else if(4 == columnIndex)
+        {
             return row.getAtt1();
         }
-        else if( 4== columnIndex)
+        else if( 5== columnIndex)
         {
             return row.getAtt2();
         }

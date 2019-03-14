@@ -9,7 +9,6 @@ public class Attendance
     private String Name;
     private Date AttDate;
     private Boolean Att1;
-
     private Boolean  Att2;
 
     public Attendance(int idStudent, int ClassId, String name, Boolean Att1, Boolean Att2, Date AttDate)
@@ -90,7 +89,7 @@ public class Attendance
         return Att2;
 
     }
-        public void setAttDate()
+    public void setAttDate()
     {
         this.AttDate= AttDate;
     }

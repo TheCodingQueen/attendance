@@ -15,6 +15,7 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 
 public class EditableTableExample extends JFrame {
+
     public EditableTableExample() {
         int VclassID;
         int VStudentID;
@@ -65,16 +66,17 @@ public class EditableTableExample extends JFrame {
 //                String query = "update attendance.Attendance set Att1 = ?, Att2 = ? where classID = ? and studentID = ? and date = ?";
 //                PreparedStatement preparedStmt = conn.prepareStatement(query);
 
-                for (int i = 0; i < totrec; i++) {
-                    System.out.println(model1.getValueAt(i, 3) + " " + model1.getValueAt(i, 4));
+                for (int i = 0; i < totrec; i++)
+                {
+                    System.out.println(model1.getValueAt(i, 4) + " " + model1.getValueAt(i, 5));
 
-                    if (model1.getValueAt(i, 3) = true) {
-                        VAtt1 = "y";
-                    }
+                    if (model1.getValueAt(i, 1) = true) {
+                        VAtt1 = "Y";
+                }
 
 
-                    if (model1.getValueAt(i, 4) = true) {
-                        VAtt2 = "y";
+                    if (model1.getValueAt(i, 5) = true) {
+                        VAtt2 = "Y";
                     }
 
                     VclassID = model1.getValueAt(i, 1);
