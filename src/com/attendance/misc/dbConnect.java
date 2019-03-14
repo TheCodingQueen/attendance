@@ -12,6 +12,7 @@ public class dbConnect
 
     public static final String password = "Mysql@2019";
 
+
     public static Connection con;
 
     public static Connection getConnection() {

@@ -31,7 +31,7 @@ public class EditableTableExample extends JFrame {
 
         try {
             PreparedStatement ps = con.prepareStatement(query);
-
+            System.out.println("1. Prepared Statement");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Attendance at = new Attendance();
@@ -40,42 +40,50 @@ public class EditableTableExample extends JFrame {
                 at.setName(rs.getString("Name"));
 
                 al.add(at);
-
+                System.out.println("2. Inside While to get data");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         AttendanceTableModel model1 = new AttendanceTableModel(al);
-
+        System.out.println("3. Model1 created");
         JFrame f1 = new JFrame();
         f1.setVisible(true);
         f1.setLayout(null);
         f1.setSize(800, 800);
 
+        System.out.println("4. Jtable instance created");
         JTable table = new JTable(model1);
 
+        table.setBounds(10, 10, 800, 800);
+        System.out.println("5. Table bounds set");
+        f1.add(table);
+        table.setVisible(true);
 
-        JButton b = new JButton();
-        b.setBounds(10, 330, 300, 100);
+        JButton b = new JButton("Done");
+        b.setBounds(320,260,300,100);
+        f1.add(b);
+        b.setVisible(true);
+        table.setBounds(30,60,500,170);
 
-        b.addActionListener(new ActionListener() {
+
+       /* b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int totrec = al.size();
                 // create the java mysql update preparedstatement
 //                String query = "update attendance.Attendance set Att1 = ?, Att2 = ? where classID = ? and studentID = ? and date = ?";
 //                PreparedStatement preparedStmt = conn.prepareStatement(query);
 
-                for (int i = 0; i < totrec; i++)
-                {
+                for (int i = 0; i < totrec; i++) {
                     System.out.println(model1.getValueAt(i, 4) + " " + model1.getValueAt(i, 5));
 
-                    if (model1.getValueAt(i, 1) = true) {
+                    if (Boolean.valueOf(model1.getValueAt(i, 1)) = true) {
                         VAtt1 = "Y";
-                }
+                    }
 
 
-                    if (model1.getValueAt(i, 5) = true) {
+                    if (Boolean.valueOf(model1.getValueAt(i, 5)) = true) {
                         VAtt2 = "Y";
                     }
 
@@ -112,18 +120,12 @@ public class EditableTableExample extends JFrame {
                         preparedStmt.setInt   (5, VAttDate);
                       // execute the java preparedstatement
                       preparedStmt.executeUpdate();
-                    */
+
                 }
             }
         });
+*/
 
-        table.setBounds(10, 10, 800, 800);
-
-
-        f1.add(b);
-        f1.add(table);
-        b.setVisible(true);
-        table.setVisible(true);
     }
 
 
@@ -138,20 +140,19 @@ public class EditableTableExample extends JFrame {
 
         }
         return result;
+
     }
 
-}
-    public static void main(String[] args)
-    {
+
+    public static void main(String[] args) {
         SwingUtilities.invokeLater
-                (new Runnable()
-                 {
+                (new Runnable() {
                      @Override
-                     public void run()
-                     {
+                     public void run() {
                          new EditableTableExample();
                      }
                  }
                 );
     }
+}
 
