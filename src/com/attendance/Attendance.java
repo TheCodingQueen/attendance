@@ -31,7 +31,7 @@ public class Attendance
         this.idStudent = idStudent;
         this.ClassId=ClassId;
         this.Name = name;
-/*        this.AttDate =AttDate;*/
+//        this.AttDate =AttDate;
         this.Att1=Att1;
         this.Att2=Att2;
 
@@ -39,12 +39,12 @@ public class Attendance
 
     public Attendance(){};
 
-    public int getIdStudent()
+    public int getidStudent()
     {
         return idStudent;
     }
 
-    public void setIdStudent(int IdStudent)
+    public void setidStudent(int IdStudent)
     {
         this.idStudent = IdStudent;
     }
@@ -89,10 +89,11 @@ public class Attendance
         return Att2;
 
     }
-    public void setAttDate()
+    public void setAttDate(Date AttDate)
     {
         this.AttDate= AttDate;
     }
+
     public Date getAttDate()
     {
         return AttDate;

@@ -11,7 +11,7 @@ public class AttendanceTableModel extends AbstractTableModel
     
     private final String[] columnNames = new String[]
             {
-            "StudentId", "ClassId", "Name","AttDate","Att1", "Att2"
+            "idStudent", "ClassId", "Name","AttDate","Att1", "Att2"
     };
     private final Class[] columnClass = new Class[]
             {
@@ -53,7 +53,7 @@ public class AttendanceTableModel extends AbstractTableModel
         Attendance row = attendanceList.get(rowIndex);
         if(0 == columnIndex)
         {
-            return row.getIdStudent();
+            return row.getidStudent();
         }
         else if(1 == columnIndex)
         {
@@ -90,7 +90,7 @@ public class AttendanceTableModel extends AbstractTableModel
         Attendance row = attendanceList.get(rowIndex);
         if(0 == columnIndex)
         {
-            row.setIdStudent((Integer) aValue);
+            row.setidStudent((Integer) aValue);
         }
         else if(1 == columnIndex)
         {
@@ -102,9 +102,13 @@ public class AttendanceTableModel extends AbstractTableModel
         }
         else if(3 == columnIndex)
         {
-            row.setAtt1((boolean) aValue);
+            row.setAttDate((Date) aValue);
         }
         else if(4 == columnIndex)
+        {
+            row.setAtt1((boolean) aValue);
+        }
+        else if(5 == columnIndex)
         {
             row.setAtt2((boolean) aValue);
         }
